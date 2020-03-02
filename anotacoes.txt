@@ -1,0 +1,4 @@
+Dependências:
+   --> estlint (airbnb pattern)
+   --> prettier
+   --> sucrase
