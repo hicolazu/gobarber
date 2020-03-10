@@ -9,3 +9,8 @@ Criar banco:
          yarn sequelize db:migrate
    --> Para criar migration:
          yarn sequelize migration:create --name=create-users
+
+SessionController:
+   --> Procurar se o user com aquele email recebido no bdy da req existe na base (User.findOne())
+   --> Criar método checkPassword() e utilizar o bcrypt.compare() para comparar a password com a password_hash
+   --> Caso tudo esteja certo, retornar as informaçoes do usuário autenticado e o token jwt com o método jwt.sign(id, secret, e {expiresIn})
