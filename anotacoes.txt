@@ -2,3 +2,10 @@ Dependências:
    --> estlint (airbnb pattern)
    --> prettier
    --> sucrase
+
+Criar banco:
+   --> Docker container com imagem postgres
+   --> Executar migration para criar as tabelas:
+         yarn sequelize db:migrate
+   --> Para criar migration:
+         yarn sequelize migration:create --name=create-users
