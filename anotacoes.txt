@@ -14,3 +14,10 @@ SessionController:
    --> Procurar se o user com aquele email recebido no bdy da req existe na base (User.findOne())
    --> Criar método checkPassword() e utilizar o bcrypt.compare() para comparar a password com a password_hash
    --> Caso tudo esteja certo, retornar as informaçoes do usuário autenticado e o token jwt com o método jwt.sign(id, secret, e {expiresIn})
+
+AuthMiddleware:
+   --> Pega o header authorization de dentro da req (req.headers.authorization)
+   --> Se não houver token, retorna um erro 401
+   --> Se houver, desestruturar o authHeader em bearer e token [, token]
+   --> Com o token em maõs, verificar se é válido usando jwt.verify(token, secret) e guardar o token decodificado (const decoded)
+   --> Retornar o id do token decodificado (req.userId = decoded.id) e deixar seguir a requisição (return next())
