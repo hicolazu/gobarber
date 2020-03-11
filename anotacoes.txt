@@ -28,3 +28,7 @@ File:
    -->  static associate(models) {
           this.belongsTo(models.File, { foreignKey: 'avatar_id' });
         }
+
+Providers:
+   --> Listar todos os users que são providers
+   --> findAll(where { 'provider': true })
