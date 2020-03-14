@@ -2,3 +2,33 @@ Dependências:
    --> estlint (airbnb pattern)
    --> prettier
    --> sucrase
+
+Criar banco:
+   --> Docker container com imagem postgres
+   --> Executar migration para criar as tabelas:
+         yarn sequelize db:migrate
+   --> Para criar migration:
+         yarn sequelize migration:create --name=create-users
+
+SessionController:
+   --> Procurar se o user com aquele email recebido no bdy da req existe na base (User.findOne())
+   --> Criar método checkPassword() e utilizar o bcrypt.compare() para comparar a password com a password_hash
+   --> Caso tudo esteja certo, retornar as informaçoes do usuário autenticado e o token jwt com o método jwt.sign(id, secret, e {expiresIn})
+
+AuthMiddleware:
+   --> Pega o header authorization de dentro da req (req.headers.authorization)
+   --> Se não houver token, retorna um erro 401
+   --> Se houver, desestruturar o authHeader em bearer e token [, token]
+   --> Com o token em maõs, verificar se é válido usando jwt.verify(token, secret) e guardar o token decodificado (const decoded)
+   --> Retornar o id do token decodificado (req.userId = decoded.id) e deixar seguir a requisição (return next())
+
+File:
+   --> Criar migration para criar entity file e outra migration para adicionar campo de relacionamento avatar_id na table users
+   --> Criar o a model de File e adicionar relacionamento na model de User
+   -->  static associate(models) {
+          this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+        }
+
+Providers:
+   --> Listar todos os users que são providers
+   --> findAll(where { 'provider': true })
